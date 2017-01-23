@@ -1,0 +1,5 @@
+[
+    { "caption": "APIExample: Test", "command": "get_file_content"},
+    // { "caption": "APIExample: Test", "command": "show_example", "args": {"ExName": "test"}},
+    { "caption": "APIExample: List", "command": "show_example_list"}
+]
