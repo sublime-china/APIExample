@@ -1,15 +1,19 @@
-# coding:utf-8
+# -*- coding:utf-8 -*-
 """
 Class sublime.View
 Methods : sel()
 Return Value : Selection
 Description : Returns a reference to the selection.
 """
-import sublime, sublime_plugin
+import sublime
+import sublime_plugin
+
 
 class ViewSelCommand(sublime_plugin.TextCommand):
+
     def run(self, edit):
-        self.show_selections()
+        print('==> View sel')
+        # self.show_selections()
         print(self.get_single_selection())
         print(self.get_multiple_selections())
         print(self.get_cursor_position())
