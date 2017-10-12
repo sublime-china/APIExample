@@ -14,4 +14,8 @@ import sublime_plugin
 class ViewIdCommand(sublime_plugin.TextCommand):
 
     def run(self, edit):
-        pass
+        print('current view id : ' + str(self.get_id()))
+
+    # 获取当前View的id
+    def get_id(self):
+        return self.view.id()

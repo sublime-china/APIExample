@@ -14,4 +14,8 @@ import sublime_plugin
 class ViewBufferIdCommand(sublime_plugin.TextCommand):
 
     def run(self, edit):
-        pass
+        print('buffer id : ' + str(self.get_buffer_id()))
+
+    # 获取当前View对应buffer的id
+    def get_buffer_id(self):
+        return self.view.buffer_id()

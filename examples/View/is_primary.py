@@ -14,4 +14,8 @@ import sublime_plugin
 class ViewIsPrimaryCommand(sublime_plugin.TextCommand):
 
     def run(self, edit):
-        pass
+        print('is primary : ' + str(self.is_primary()))
+
+    # FIXME: 何时为False
+    def is_primary(self):
+        return self.view.is_primary()
