@@ -6,6 +6,7 @@ import re
 log_header = '[APIExample] '
 
 example_path = os.path.join(os.path.dirname(__file__), 'examples')
+fdir = os.path.dirname(__file__)
 
 
 def get_files(path):
@@ -52,14 +53,13 @@ class ExampleShowInNewFileCommand(sublime_plugin.WindowCommand):
     def run_(self, edit_token, args):
         if args:
             output = args.get('output', 'content not set')
-            v = self.window.new_file()
-            v.set_scratch(True)
-            v.set_name('Api Example')
-            edit = v.begin_edit(edit_token, "")
-            v.insert(edit, 0, output)
-            v.end_edit(edit)
-            v.run_command('set_file_type', {
-                          "syntax": "Packages/Python/Python.sublime-syntax"})
+            # v = self.window.new_file()
+            fname = 'TestExample.py'
+            filename = fdir + '/' + fname
+            f = open(filename, 'w+')
+            f.write(output)
+            f.close()
+            self.window.open_file(filename)
 
 
 class ExampleShowListCommand(sublime_plugin.WindowCommand):
@@ -87,7 +87,7 @@ class ExampleRunTestCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         # get command and type then run command
         # type = window, view, application
-        if self.view.name() == "Api Example":
+        if self.view.file_name().endswith('TestExample.py'):
             region = sublime.Region(0, self.view.size())
             content = self.view.substr(region)
             restr = re.compile(
