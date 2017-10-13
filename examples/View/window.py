@@ -2,7 +2,7 @@
 """
 Class : sublime.View
 Methods : window()
-Return Value : <a href="http://www.sublimetext.com/docs/3/api_reference.html#sublime.Window">Window</a>
+Return Value : sublime.Window
 Description : Returns a reference to the window containing the view.
 """
 
@@ -14,4 +14,8 @@ import sublime_plugin
 class ViewWindowCommand(sublime_plugin.TextCommand):
 
     def run(self, edit):
-        pass
+        print('Get window : ' + str(self.get_window()))
+
+    # 获取当前view所在的Window
+    def get_window(self):
+        return self.view.window()
