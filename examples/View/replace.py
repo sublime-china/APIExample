@@ -14,4 +14,10 @@ import sublime_plugin
 class ViewReplaceCommand(sublime_plugin.TextCommand):
 
     def run(self, edit):
-        pass
+        print('Test replace region to "Happy everyday!"')
+        region = self.view.sel()[0]
+        self.replace(edit, region, "Happy everyday!")
+
+    # 替换region区域的文本
+    def replace(self, edit, region, string):
+        self.view.replace(edit, region, string)

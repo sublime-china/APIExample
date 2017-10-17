@@ -13,5 +13,24 @@ import sublime_plugin
 
 class ViewInsertCommand(sublime_plugin.TextCommand):
 
+    head = r'''========================
+	Hello Insert Head
+========================
+
+'''
+
+    tail = r'''
+========================
+	Hello Insert Tail
+========================
+'''
+
     def run(self, edit):
-        pass
+        print('Test insert Head :  "Hello Insert Head" ')
+        self.insert(edit, 0, self.head)
+        print('Test insert tail :  "Hello Insert tail" ')
+        self.insert(edit, self.view.size(), self.tail)
+
+    # 插入文本
+    def insert(self, edit, point, string):
+        self.view.insert(edit, point, string)

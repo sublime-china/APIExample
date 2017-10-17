@@ -53,7 +53,6 @@ class ExampleShowInNewFileCommand(sublime_plugin.WindowCommand):
     def run_(self, edit_token, args):
         if args:
             output = args.get('output', 'content not set')
-            # v = self.window.new_file()
             fname = 'TestExample.py'
             filename = fdir + '/' + fname
             f = open(filename, 'w+')
@@ -99,6 +98,11 @@ class ExampleRunTestCommand(sublime_plugin.TextCommand):
                 print(log_header + "command : " +
                       command + ", type : " + cmd_type)
                 command = self.format_cmd(command)
+
+                # show console panel before run command
+                self.view.window().run_command(
+                    'show_panel', {"panel": "console", "toggle": False})
+
                 print(log_header + 'run command : ' + command)
                 if cmd_type == "TextCommand":
                     self.view.run_command(command)

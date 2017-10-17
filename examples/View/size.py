@@ -17,6 +17,5 @@ class ViewSizeCommand(sublime_plugin.TextCommand):
         print('The number of character in the file is ' + str(self.size()))
 
     # 获取文件里的字符总数
-    # FIXME: to be rich...
     def size(self):
         return self.view.size()
