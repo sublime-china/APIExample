@@ -14,4 +14,16 @@ import sublime_plugin
 class ViewEraseCommand(sublime_plugin.TextCommand):
 
     def run(self, edit):
-        pass
+        print('Test erase content from first select region')
+        region = self.view.sel()[0]
+        if region.empty():
+            print('You select nothing.')
+            print('Now select a region and run test again')
+            return
+        region = self.view.sel()[0]
+        self.erase(edit, region)
+        print('Erase content : ' + self.view.substr(region))
+
+    # 擦除region区域的文本
+    def erase(self, edit, region):
+        self.view.erase(edit, region)
