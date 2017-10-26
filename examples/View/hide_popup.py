@@ -14,4 +14,9 @@ import sublime_plugin
 class ViewHidePopupCommand(sublime_plugin.TextCommand):
 
     def run(self, edit):
-        pass
+        print('hide popup')
+        self.hide_popup()
+
+    # 隐藏 popup 悬浮框
+    def hide_popup(self):
+        self.view.hide_popup()
