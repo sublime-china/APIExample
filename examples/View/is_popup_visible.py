@@ -14,4 +14,8 @@ import sublime_plugin
 class ViewIsPopupVisibleCommand(sublime_plugin.TextCommand):
 
     def run(self, edit):
-        pass
+        print('is_popup_visible : ' + str(self.is_popup_visible()))
+
+    # popup 悬浮框是否显示
+    def is_popup_visible(self):
+        return self.view.is_popup_visible()
