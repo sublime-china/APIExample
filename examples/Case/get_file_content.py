@@ -18,4 +18,6 @@ class GetFileContentCommand(sublime_plugin.TextCommand):
         # 截取一个选区里的内容
         content = self.view.substr(reg)
 
+        print(content)
+
         return content

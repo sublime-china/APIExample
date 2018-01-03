@@ -17,7 +17,7 @@ class ViewFileNameCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         print('File name : ' + self.get_file_name())
         print('File dir : ' + self.get_file_dir())
-        print('Simple file name : ' + self.get_file_name())
+        print('Simple file name : ' + self.get_simple_fname())
         print('The ext with file ： ' + self.get_file_ext())
 
     # 获取文件名，包含全路径
