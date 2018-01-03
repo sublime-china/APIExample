@@ -55,7 +55,7 @@ class ExampleShowInNewFileCommand(sublime_plugin.WindowCommand):
             output = args.get('output', 'content not set')
             fname = 'TestExample.py'
             filename = fdir + '/' + fname
-            f = open(filename, 'w+')
+            f = open(filename, 'w+', encoding='utf-8')
             f.write(output)
             f.close()
             self.window.open_file(filename)
