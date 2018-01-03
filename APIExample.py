@@ -55,10 +55,10 @@ class ExampleShowInNewFileCommand(sublime_plugin.WindowCommand):
             output = args.get('output', 'content not set')
             fname = 'TestExample.py'
             filename = fdir + '/' + fname
-            f = open(filename, 'w+', encoding='utf-8')
-            f.write(output)
-            f.close()
-            self.window.open_file(filename)
+            with open(filename, 'w+', encoding='utf-8') as fp:
+                fp.write(output)
+                sublime.set_timeout_async(
+                    lambda: self.window.open_file(filename), 0)
 
 
 class ExampleShowListCommand(sublime_plugin.WindowCommand):
@@ -73,12 +73,9 @@ class ExampleShowListCommand(sublime_plugin.WindowCommand):
             return
 
         print(log_header + 'open file : ' + self.filePaths[index])
-        f = open(self.filePaths[index], 'r', encoding='utf-8')
-        content = f.read()
-        f.close()
-        self.window.run_command('example_show_in_new_file', {
-            'output': content
-        })
+        with open(self.filePaths[index], 'r', encoding='utf-8') as fp:
+            content = fp.read()
+            sublime.set_timeout_async(lambda:self.window.run_command('example_show_in_new_file', {'output': content}), 0)
 
 
 class ExampleRunTestCommand(sublime_plugin.TextCommand):
