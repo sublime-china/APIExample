@@ -62,7 +62,6 @@ class ExampleShowInNewFileCommand(sublime_plugin.WindowCommand):
 
 
 class ExampleShowListCommand(sublime_plugin.WindowCommand):
-
     def run(self):
         print(log_header + 'show example list')
         self.filePaths = get_file_path()
@@ -77,12 +76,12 @@ class ExampleShowListCommand(sublime_plugin.WindowCommand):
         f = open(self.filePaths[index], 'r', encoding='utf-8')
         content = f.read()
         f.close()
-        self.window.run_command(
-            'example_show_in_new_file', {'output': content})
+        self.window.run_command('example_show_in_new_file', {
+            'output': content
+        })
 
 
 class ExampleRunTestCommand(sublime_plugin.TextCommand):
-
     def run(self, edit):
         # get command and type then run command
         # type = window, view, application
@@ -95,13 +94,15 @@ class ExampleRunTestCommand(sublime_plugin.TextCommand):
             for item in items:
                 command = item[0]
                 cmd_type = item[1]
-                print(log_header + "command : " +
-                      command + ", type : " + cmd_type)
+                print(log_header + "command : " + command + ", type : " +
+                      cmd_type)
                 command = self.format_cmd(command)
 
                 # show console panel before run command
-                self.view.window().run_command(
-                    'show_panel', {"panel": "console", "toggle": False})
+                self.view.window().run_command('show_panel', {
+                    "panel": "console",
+                    "toggle": False
+                })
 
                 print(log_header + 'run command : ' + command)
                 if cmd_type == "TextCommand":
